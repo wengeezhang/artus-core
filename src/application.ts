@@ -6,6 +6,7 @@ import { LoaderFactory, Manifest } from './loader';
 import { Application, ApplicationInitOptions } from './types';
 import Trigger from './trigger';
 import ConfigurationHandler from './configuration';
+import compatibleRequire from './utils/compatible-require';
 
 export class ArtusApplication implements Application {
   public manifest?: Manifest;
@@ -53,6 +54,19 @@ export class ArtusApplication implements Application {
     return this.container;
   }
 
+  /**
+   * @artus/injection is the default ioc implementation.
+   * however, artus provides alterables through loadCustomContainer method
+   * usage: 
+   * ```ts
+   * const app: ArtusApplication = new ArtusApplication();
+   * await app.loadCustomContainer('inversify');
+   * ```
+   * @param {String} customContainer npm package name of custom ioc container
+   */
+  async loadCustomContainer(customContainer: string) {
+    this.container = <Container>(await compatibleRequire(customContainer));
+  }
   async loadDefaultClass() {
     // load Artus default clazz
     this.container.set({ id: ArtusInjectEnum.Application, value: this });
