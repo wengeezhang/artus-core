@@ -1,0 +1,25 @@
+{
+    "name": "@gulu/core",
+    "version": "0.0.1",
+    "description": "upper framework based on artus core",
+    "main": "src/index.js",
+    "scripts": {
+      "build": "tsc",
+      "test": "jest --detectOpenHandles",
+      "ci": "npm run test"
+    },
+    "author": "Artus Working Group",
+    "license": "MIT",
+    "devDependencies": {
+    },
+    "dependencies": {
+      "@artus/injection": "^0.1.1",
+      "@artus/pipeline": "^0.1.6",
+      "@artus/core": "^0.0.1"
+    },
+    "ci": {
+      "type": "github",
+      "version": "12, 14, 16"
+    }
+  }
+  
