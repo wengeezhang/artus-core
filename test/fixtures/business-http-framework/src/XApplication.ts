@@ -7,16 +7,17 @@ import { DefaultContext } from 'koa';
 import compose from 'koa-compose'
 
 export class XApplication extends ArtusApplication{
-    private protocolServer: Koa; // protocol-related dep (koa/express/fastify/hapi)
+    private server: Koa; // protocol-related dep (koa/express/fastify/hapi)
     private manifestItems: Manifest;
     constructor(initOpts: {manifest: string}){
         super()
         // can be replaced by express/fastify/hapi, even a rpc server
-        this.protocolServer = new Koa(); 
+        this.server = new Koa(); 
         
         this.manifestItems = XApplication.getJson(initOpts.manifest);
     }
 
+    // prepare
     async init(): Promise<void> {
         // step1: call artus/core load: load items to ioc container
         await this.load(this.manifestItems);
@@ -29,16 +30,17 @@ export class XApplication extends ArtusApplication{
         });
     }
 
+    // start: ship routes and listen
     async start(port){
         // create link between "protocol-related dep (koa/express/fastify/hapi)" and "artus trigger"
-        this.protocolServer.use(async (koaCtx: DefaultContext) => {
+        this.server.use(async (koaCtx: DefaultContext) => {
             const input = new Input();
             const { req, res } = koaCtx;
             input.params = { koaCtx, req, res };
             await this.trigger.startPipeline(input);
           });
         // step3: start
-        this.protocolServer.listen(port);
+        this.server.listen(port);
     }
 
     // prepare protocol-related middlewares and controllers
@@ -48,11 +50,21 @@ export class XApplication extends ArtusApplication{
         const middlewares = [];
 
         // may be more aop handlers: filter、interceptor
-        // ...
+        // const filters = [];
+        // const interceptors = [];
 
         // controllers
         const controllers = [];
-        return middlewares.concat(compose(controllers));
+        {
+            
+        }
+        const result = [];
+        result.push(...middlewares);
+        // result.push(...filters);
+        // result.push(...interceptors);
+        result.push(compose(controllers));
+
+        return result;
     }
 
 

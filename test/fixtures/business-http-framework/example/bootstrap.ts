@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { XApplication } from '../src/index';
 
 export async function main() {

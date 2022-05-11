@@ -1,0 +1,9 @@
+{
+    "items": [{
+        "path": "/Users/bytedance/Documents/git/gulu/core/test/fixtures/business-framework/example/controllers/hello",
+        "extname": ".js",
+        "filename": "hello.js",
+        "loader": "module",
+        "source": "app"
+    }]
+}

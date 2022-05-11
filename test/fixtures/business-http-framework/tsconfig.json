@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+        "es2015",
+        "es2016",
+        "es2017"
+    ],
+    "allowJs": false,
+    "moduleResolution": "node"
+  },
+  "exclude": ["./example/manifest.ts"],
+  "include": ["./example/**/*", "./src/**/*"]
+}
