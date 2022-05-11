@@ -13,6 +13,6 @@
     "allowJs": false,
     "moduleResolution": "node"
   },
-  "exclude": ["./example/manifest.ts"],
+  "exclude": ["./example/manifest.json"],
   "include": ["./example/**/*", "./src/**/*"]
 }

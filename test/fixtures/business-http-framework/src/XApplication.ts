@@ -56,7 +56,8 @@ export class XApplication extends ArtusApplication{
         // controllers
         const controllers = [];
         {
-            
+            // todo: how to get all controllers?
+            // const controllers = await container.getAsync();
         }
         const result = [];
         result.push(...middlewares);
