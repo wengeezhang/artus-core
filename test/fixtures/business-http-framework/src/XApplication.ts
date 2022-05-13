@@ -56,8 +56,8 @@ export class XApplication extends ArtusApplication{
         // controllers
         const controllers = [];
         {
-            // todo: how to get all controllers?
-            // const controllers = await container.getAsync();
+            // fetch all controllers through container's registry
+            // const registryItems = container.reg
         }
         const result = [];
         result.push(...middlewares);
